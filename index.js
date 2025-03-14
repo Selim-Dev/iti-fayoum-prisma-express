@@ -13,6 +13,9 @@ const prisma = require('./lib/prisma')
 app.use(morgan('combined'))
 // core middleware
 app.use(express.json())
+app.use('/',(req,res)=>{
+	res.send('hello world !')
+})
 app.use('/users',userRoutes)
 app.use('/todos',todosRoutes)
 app.use('/posts', postsRoutes)
