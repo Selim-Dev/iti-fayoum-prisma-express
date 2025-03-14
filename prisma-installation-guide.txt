@@ -1,3 +1,5 @@
+
+
 //1. install @prisma/client : npm i @prisma/client, npm i -D prisma
 //2. npx prisma init : generate the prisma schema folder and add your schema
 //3. create the prisma client : using npx prisma generate

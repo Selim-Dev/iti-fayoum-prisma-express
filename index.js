@@ -1,9 +1,11 @@
 const express = require('express')
+require('dotenv').config()
 const morgan = require('morgan')
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 const userRoutes = require('./routes/user.routes');
 const todosRoutes = require('./routes/todo.routes')
+const postsRoutes = require('./routes/post.routes')
 const prisma = require('./lib/prisma')
 
 
@@ -13,13 +15,14 @@ app.use(morgan('combined'))
 app.use(express.json())
 app.use('/users',userRoutes)
 app.use('/todos',todosRoutes)
+app.use('/posts', postsRoutes)
 
 
 
 
-
+// global error handler
 app.use((err,req,res,next)=>{
-	res.status(500).send({
+	res.status(err.statusCode || 500).send({
 		statusCode: err.statusCode || 500,
 		message: err.message || 'something went wrong',
 		errors: []
